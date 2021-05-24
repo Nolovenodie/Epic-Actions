@@ -15,12 +15,14 @@ def Run(Playwright, username, password):
         print("开始登录")
             
         bot.log_in(None, username, password)
-        print("登录成功")
-
-        purchased_offer_urls = bot.purchase_free_promotional_offers()
-        print("领取完毕")
+        if bot.is_logged_in()
         
-        [print(url) for url in purchased_offer_urls]
+            print("登录成功")
+
+            purchased_offer_urls = bot.purchase_free_promotional_offers()
+            print("领取完毕 "+len(purchased_offer_urls))
+
+            [print(url) for url in purchased_offer_urls]
 
         browser.close()
     except Exception:
