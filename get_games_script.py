@@ -26,7 +26,9 @@ def Run(playwright, username, password):
         purchased_offer_urls = bot.purchase_free_promotional_offers()
         print("领取完毕 "+str(len(purchased_offer_urls)))
         
-        Qmsg("Epic 领取完毕: "+str(len(purchased_offer_urls)))
+        count = len(purchased_offer_urls)
+        if count>0:
+            Qmsg("Epic 领取完毕: "+str(count))
 
         [print(url) for url in purchased_offer_urls]
             
