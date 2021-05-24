@@ -11,7 +11,7 @@ def Qmsg(msg):
 
 def Run(playwright, username, password):
     browser = None
-    print(username+" 开始领取") 
+    print("开始领取") 
     
     try:
         browser = playwright.firefox.launch()
