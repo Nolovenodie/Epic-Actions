@@ -1,6 +1,8 @@
 name: Epic Free Actions
 
 on:
+  watch:
+    types: started
   schedule:
     - cron: "25 2 * * *"
   push:
