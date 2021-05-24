@@ -30,15 +30,5 @@ if __name__ == '__main__':
     
     CA = EpicGamesBot.list_free_promotional_offers()  # 免费游戏列表
     print(CA)
-    # 用户列表
-    userList = [
-        {
-            'username': Email,
-            'password': Password
-        }
-    ]
-    for val in userList:
-        with sync_playwright() as playwright:
-            Run(playwright, val['username'], val['password'])
-        # 休息20秒再登录下一个账号 防止被K
-        time.sleep(20)
+    with sync_playwright() as playwright:
+        Run(playwright, Email, Password)
