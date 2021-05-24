@@ -32,6 +32,4 @@ jobs:
           EPIC_EMAIL: ${{ secrets.EPIC_EMAIL }}
           EPIC_PASSWORD: ${{ secrets.EPIC_PASSWORD }}
           QMSG_TOKEN: ${{ secrets.QMSG_TOKEN }}
-        run: |
-          python get_games_script.py
-          echo ${{ secrets.EPIC_EMAIL }}
+        run: python get_games_script.py
