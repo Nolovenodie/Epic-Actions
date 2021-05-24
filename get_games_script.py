@@ -27,7 +27,7 @@ def Run(playwright, username, password):
         print("领取完毕 "+str(len(purchased_offer_urls)))
         
         count = len(purchased_offer_urls)
-        if count>0:
+        if count > 0:
             Qmsg("Epic 领取完毕: "+str(count))
 
         [print(url) for url in purchased_offer_urls]
