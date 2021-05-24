@@ -1,9 +1,15 @@
 import os
+import requests
 
 from epic_games_bot import EpicGamesBot
 from playwright.sync_api import sync_playwright
 
-def Run(Playwright, username, password):
+QmsgToken = ""
+
+def Qmsg(msg):
+    requests.get("https://qmsg.zendee.cn/send/"+QmsgToken+"?msg="+msg)
+
+def Run(playwright, username, password):
     browser = None
     print(username+" 开始领取") 
     
@@ -18,7 +24,9 @@ def Run(Playwright, username, password):
         print("登录成功")
 
         purchased_offer_urls = bot.purchase_free_promotional_offers()
-        print("领取完毕 "+len(purchased_offer_urls))
+        print("领取完毕 "+str(len(purchased_offer_urls)))
+        
+        Qmsg("Epic 领取完毕: "+str(len(purchased_offer_urls)))
 
         [print(url) for url in purchased_offer_urls]
             
