@@ -24,6 +24,11 @@ class EpicGamesBot:
     def cookies(self):
         return self.page.context.cookies()
 
+    def dump_frame_tree(frame, indent):
+        print(indent + frame.name + '@' + frame.url)
+        for child in frame.child_frames:
+            dump_frame_tree(child, indent + "    ")
+
     def log_in(self, cookies=None, username=None, password=None):
         if cookies:
             logging.info("Logging in with cookies...")
@@ -110,6 +115,9 @@ class EpicGamesBot:
                 self.page.click("[data-component='EulaModalActions'] button")
                 purchase_button.click()
 
+            
+            dump_frame_tree(self.page.main_frame, "")
+                
             print("按下 .btn-primary")
             self.page.click(".btn-primary")
             print("都按下了")
