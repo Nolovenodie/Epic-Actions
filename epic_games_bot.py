@@ -24,7 +24,7 @@ class EpicGamesBot:
     def cookies(self):
         return self.page.context.cookies()
 
-    def dump_frame_tree(frame, indent):
+    def dump_frame_tree(self, frame, indent):
         print(indent + frame.name + '@' + frame.url)
         for child in frame.child_frames:
             dump_frame_tree(child, indent + "    ")
