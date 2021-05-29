@@ -120,6 +120,7 @@ class EpicGamesBot:
                 
             print("按下 .btn-primary")
             self.page.screenshot(path="screenshot.png")
+            return []
             self.page.click(".btn-primary")
             print("都按下了")
             
