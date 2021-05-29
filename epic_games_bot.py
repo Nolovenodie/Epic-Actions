@@ -93,7 +93,7 @@ class EpicGamesBot:
             print("进入完成")
 
             purchase_button = self.page.query_selector("//button[contains(., 'Get')]")
-            print("按钮: "+purchase_button)
+            print("按钮")
             
             if not purchase_button:
                 continue
