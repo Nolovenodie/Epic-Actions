@@ -23,12 +23,7 @@ class EpicGamesBot:
     @property
     def cookies(self):
         return self.page.context.cookies()
-
-    def dump_frame_tree(self, frame, indent):
-        print(indent + frame.name + '@' + frame.url)
-        for child in frame.child_frames:
-            self.dump_frame_tree(child, indent + "    ")
-
+    
     def log_in(self, cookies=None, username=None, password=None):
         if cookies:
             logging.info("Logging in with cookies...")
@@ -93,40 +88,39 @@ class EpicGamesBot:
         purchased_offer_urls = []
 
         for offer_url in self.list_free_promotional_offers():
-            print("进入: "+offer_url)
             self.page.goto(offer_url)
-            print("进入完成")
 
             purchase_button = self.page.query_selector("//button[contains(., 'Get')]")
-            print("按钮")
             
             if not purchase_button:
                 continue
 
-            print("按下")
             purchase_button.click()
 
-            print("协议")
             eula_checkbox = self.page.query_selector("#agree")
             
             if eula_checkbox:
-                print("协议状态")
                 eula_checkbox.check()
                 self.page.click("[data-component='EulaModalActions'] button")
                 purchase_button.click()
-
             
-            self.dump_frame_tree(self.page.main_frame, "")
-                
-            print("按下 .btn-primary")
-            self.page.screenshot(path="screenshot.png")
-            return []
+            device_button = self.page.wait_for_selector(
+                "div[data-component=platformUnsupportedWarning]", timeout=5000)
+
+            if device_button:
+                device_button.click()
+
+            url = self.page.wait_for_selector(
+                "#webPurchaseContainer > iframe").get_attribute("src")
+
+            print(EPIC_GAMES_URL + url)
+            self.page.goto(EPIC_GAMES_URL + url)
+            
             self.page.click(".btn-primary")
-            print("都按下了")
             
-            print("等待 networkidle")
             self.page.wait_for_load_state("networkidle")
-
+            self.page.screenshot(path="screenshot.png")
+            
             purchased_offer_urls.append(offer_url)
 
         return purchased_offer_urls
@@ -159,6 +153,9 @@ class AsyncEpicGamesBot(EpicGamesBot):
 
         self._is_logged_in = True
 
+    '''
+    Error, not update
+    '''
     async def purchase_free_promotional_offers(self):
         if not self.is_logged_in:
             raise Exception("authentication failed")
