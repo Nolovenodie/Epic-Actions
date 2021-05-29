@@ -116,7 +116,6 @@ class EpicGamesBot:
             url = self.page.wait_for_selector(
                 "#webPurchaseContainer > iframe").get_attribute("src")
 
-            print(EPIC_GAMES_URL + url)
             self.page.goto(EPIC_GAMES_URL + url)
             
             self.page.click(".btn-primary")
