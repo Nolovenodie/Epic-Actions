@@ -88,7 +88,9 @@ class EpicGamesBot:
         purchased_offer_urls = []
 
         for offer_url in self.list_free_promotional_offers():
+            print("进入: "+offer_url);
             self.page.goto(offer_url)
+            print("进入完成");
 
             purchase_button = self.page.query_selector("//button[contains(., 'Get')]")
 
