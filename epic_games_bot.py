@@ -103,9 +103,9 @@ class EpicGamesBot:
 
             print("协议")
             eula_checkbox = self.page.query_selector("#agree")
-            print("协议状态: "+eula_checkbox)
             
             if eula_checkbox:
+                print("协议状态")
                 eula_checkbox.check()
                 self.page.click("[data-component='EulaModalActions'] button")
                 purchase_button.click()
