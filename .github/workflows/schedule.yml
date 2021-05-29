@@ -35,11 +35,3 @@ jobs:
           EPIC_PASSWORD: ${{ secrets.EPIC_PASSWORD }}
           QMSG_TOKEN: ${{ secrets.QMSG_TOKEN }}
         run: python get_games_script.py
-        
-      - name: Upload Screenshot
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add "screenshot.png"
-          git commit -m "Upload playwright screenshot"
-          git push
