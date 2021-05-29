@@ -88,25 +88,33 @@ class EpicGamesBot:
         purchased_offer_urls = []
 
         for offer_url in self.list_free_promotional_offers():
-            print("进入: "+offer_url);
+            print("进入: "+offer_url)
             self.page.goto(offer_url)
-            print("进入完成");
+            print("进入完成")
 
             purchase_button = self.page.query_selector("//button[contains(., 'Get')]")
-
+            print("按钮: "+purchase_button)
+            
             if not purchase_button:
                 continue
 
+            print("按下")
             purchase_button.click()
 
+            print("协议")
             eula_checkbox = self.page.query_selector("#agree")
-
+            print("协议状态: "+eula_checkbox)
+            
             if eula_checkbox:
                 eula_checkbox.check()
                 self.page.click("[data-component='EulaModalActions'] button")
                 purchase_button.click()
 
+            print("按下 .btn-primary")
             self.page.click(".btn-primary")
+            print("都按下了")
+            
+            print("等待 networkidle")
             self.page.wait_for_load_state("networkidle")
 
             purchased_offer_urls.append(offer_url)
