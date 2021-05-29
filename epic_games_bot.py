@@ -116,7 +116,7 @@ class EpicGamesBot:
                 purchase_button.click()
 
             
-            dump_frame_tree(self.page.main_frame, "")
+            self.dump_frame_tree(self.page.main_frame, "")
                 
             print("按下 .btn-primary")
             self.page.click(".btn-primary")
