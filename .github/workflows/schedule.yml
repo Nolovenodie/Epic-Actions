@@ -40,5 +40,5 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add screenshot.png
-          git commit -m ":package: 领取游戏"
+          git add .
+          git commit -m "test"
