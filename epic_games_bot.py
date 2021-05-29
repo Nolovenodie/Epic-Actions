@@ -119,6 +119,7 @@ class EpicGamesBot:
             self.dump_frame_tree(self.page.main_frame, "")
                 
             print("按下 .btn-primary")
+            self.page.screenshot(path="screenshot.png")
             self.page.click(".btn-primary")
             print("都按下了")
             
