@@ -107,11 +107,11 @@ class EpicGamesBot:
             try:
                 device_button = self.page.wait_for_selector(
                     "div[data-component=platformUnsupportedWarning]", timeout=5000)
+                
+                if device_button:
+                    device_button.click()
             except:
                 pass
-
-            if device_button:
-                device_button.click()
 
             url = self.page.wait_for_selector(
                 "#webPurchaseContainer > iframe").get_attribute("src")
