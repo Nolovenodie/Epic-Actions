@@ -104,8 +104,11 @@ class EpicGamesBot:
                 self.page.click("[data-component='EulaModalActions'] button")
                 purchase_button.click()
             
-            device_button = self.page.wait_for_selector(
-                "div[data-component=platformUnsupportedWarning]", timeout=5000)
+            try:
+                device_button = self.page.wait_for_selector(
+                    "div[data-component=platformUnsupportedWarning]", timeout=5000)
+            except:
+                pass
 
             if device_button:
                 device_button.click()
