@@ -27,7 +27,7 @@ class EpicGamesBot:
     def dump_frame_tree(self, frame, indent):
         print(indent + frame.name + '@' + frame.url)
         for child in frame.child_frames:
-            dump_frame_tree(child, indent + "    ")
+            self.dump_frame_tree(child, indent + "    ")
 
     def log_in(self, cookies=None, username=None, password=None):
         if cookies:
