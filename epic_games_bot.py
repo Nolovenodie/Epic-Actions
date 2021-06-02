@@ -39,7 +39,7 @@ class EpicGamesBot:
             self.page.click("#sign-in:enabled")
 
             self.page.screenshot(path="screenshot.png")
-            return false
+            return
             self.page.wait_for_load_state("networkidle", timeout=60000)
 
             self.page.context.add_cookies([PERMISSION_COOKIE])
@@ -84,6 +84,8 @@ class EpicGamesBot:
         return offer_urls
 
     def purchase_free_promotional_offers(self):
+        return
+        
         if not self.is_logged_in:
             raise Exception("authentication failed")
 
