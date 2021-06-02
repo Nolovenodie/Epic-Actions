@@ -37,7 +37,11 @@ class EpicGamesBot:
             self.page.type("#email", username)
             self.page.type("#password", password)
             self.page.click("#sign-in:enabled")
-            self.page.wait_for_load_state("networkidle", timeout=60000)
+            
+            try:
+                self.page.wait_for_load_state("networkidle", timeout=60000)
+            except:
+                self.page.screenshot(path="screenshot.png")
 
             self.page.context.add_cookies([PERMISSION_COOKIE])
         else:
