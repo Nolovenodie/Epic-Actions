@@ -84,7 +84,7 @@ class EpicGamesBot:
         return offer_urls
 
     def purchase_free_promotional_offers(self):
-        return
+        return []
         
         if not self.is_logged_in:
             raise Exception("authentication failed")
