@@ -41,5 +41,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add "screenshot.png"
-          git commit -m "Upload playwright screenshot"
-          git push
+          # git commit -m "Upload playwright screenshot"
+          # git push
