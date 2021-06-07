@@ -130,6 +130,8 @@ class EpicGamesBot:
             
             self.page.click(".btn-primary")
             
+            self.page.screenshot(path="screenshot.png")
+            
             self.page.wait_for_load_state("networkidle", timeout=60000)
             
             purchased_offer_urls.append(offer_url)
