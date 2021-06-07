@@ -45,8 +45,8 @@ def Run(playwright, cookies, username, password):
 
 if __name__ == '__main__':
     Cookies = os.environ["EPIC_COOKIES"]
-    # Email = os.environ["EPIC_EMAIL"]
-    # Password = os.environ["EPIC_PASSWORD"]
+    Email = os.environ["EPIC_EMAIL"]
+    Password = os.environ["EPIC_PASSWORD"]
     QmsgToken = os.environ["QMSG_TOKEN"]
     
     Games = EpicGamesBot.list_free_promotional_offers()  # 游戏列表
