@@ -28,8 +28,7 @@ class EpicGamesBot:
         if cookies:
             logging.info("Logging in with cookies...")
             self.page.context.add_cookies(cookies)
-            self.page.goto(f"{EPIC_GAMES_URL}/login")#, wait_until="networkidle", timeout=60000)
-            self.page.wait_for_load_state("networkidle", timeout=60000)
+            self.page.goto(f"{EPIC_GAMES_URL}/login", wait_until="networkidle", timeout=60000)
         elif username and password:
             logging.info("Logging in with account credentials...")
             self.page.context.clear_cookies()
