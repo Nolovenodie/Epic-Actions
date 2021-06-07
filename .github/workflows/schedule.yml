@@ -36,6 +36,7 @@ jobs:
           EPIC_PASSWORD: ${{ secrets.EPIC_PASSWORD }}
           QMSG_TOKEN: ${{ secrets.QMSG_TOKEN }}
         run: |
+          rm -rf debug
           mkdir debug
           python get_games_script.py
         
