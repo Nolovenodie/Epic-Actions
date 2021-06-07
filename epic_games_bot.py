@@ -126,15 +126,22 @@ class EpicGamesBot:
             url = self.page.wait_for_selector(
                 "#webPurchaseContainer > iframe").get_attribute("src")
 
+            
+            self.page.screenshot(path="debug/screenshot-0.png")
+            
             self.page.goto(EPIC_GAMES_URL + url, timeout=60000)
             
             print(url)
             
-            self.page.screenshot(path="screenshot.png")
+            self.page.screenshot(path="debug/screenshot-1.png")
             
             self.page.click(".btn-primary")
             
+            self.page.screenshot(path="debug/screenshot-2.png")
+            
             self.page.wait_for_load_state("networkidle", timeout=60000)
+            
+            self.page.screenshot(path="debug/screenshot-3.png")
             
             purchased_offer_urls.append(offer_url)
 
