@@ -128,9 +128,11 @@ class EpicGamesBot:
 
             self.page.goto(EPIC_GAMES_URL + url, timeout=60000)
             
-            self.page.click(".btn-primary")
+            print(url)
             
             self.page.screenshot(path="screenshot.png")
+            
+            self.page.click(".btn-primary")
             
             self.page.wait_for_load_state("networkidle", timeout=60000)
             
