@@ -38,8 +38,9 @@ class EpicGamesBot:
             self.page.type("#password", password)
             self.page.click("#sign-in:enabled")
 
-            self.page.screenshot(path="screenshot.png")
-            return
+            # self.page.screenshot(path="screenshot.png")
+            # return
+        
             self.page.wait_for_load_state("networkidle", timeout=60000)
 
             self.page.context.add_cookies([PERMISSION_COOKIE])
@@ -84,7 +85,7 @@ class EpicGamesBot:
         return offer_urls
 
     def purchase_free_promotional_offers(self):
-        return []
+        # return []
         
         if not self.is_logged_in:
             raise Exception("authentication failed")
@@ -94,6 +95,10 @@ class EpicGamesBot:
 
         for offer_url in self.list_free_promotional_offers():
             self.page.goto(offer_url)
+            
+            mature_button = self.page.query_selector("div[data-component=PDPAgeGate] > button")
+            if mature_button:
+                mature_button.check()
 
             purchase_button = self.page.query_selector("//button[contains(., 'Get')]")
             
