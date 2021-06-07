@@ -31,6 +31,7 @@ jobs:
 
       - name: Get Games Script
         env: 
+          EPIC_COOKIES: ${{ secrets.EPIC_COOKIES }}
           EPIC_EMAIL: ${{ secrets.EPIC_EMAIL }}
           EPIC_PASSWORD: ${{ secrets.EPIC_PASSWORD }}
           QMSG_TOKEN: ${{ secrets.QMSG_TOKEN }}
