@@ -9,7 +9,7 @@ QmsgToken = ""
 def Qmsg(msg):
     requests.get("https://qmsg.zendee.cn/send/"+QmsgToken+"?msg="+msg)
 
-def Run(playwright, username, password):
+def Run(playwright, cookies, username, password):
     browser = None
     print("开始领取") 
     
@@ -20,7 +20,11 @@ def Run(playwright, username, password):
         bot = EpicGamesBot(page)
         print("开始登录")
             
-        bot.log_in(None, username, password)
+        if cookies:
+            bot.log_in(cookies)
+        else:
+            bot.log_in(None, username, password)
+        
         print("登录成功")
 
         purchased_offer_urls = bot.purchase_free_promotional_offers()
@@ -40,12 +44,13 @@ def Run(playwright, username, password):
         raise
 
 if __name__ == '__main__':
-    Email = os.environ["EPIC_EMAIL"]
-    Password = os.environ["EPIC_PASSWORD"]
+    Cookies = os.environ["EPIC_COOKIES"]
+    # Email = os.environ["EPIC_EMAIL"]
+    # Password = os.environ["EPIC_PASSWORD"]
     QmsgToken = os.environ["QMSG_TOKEN"]
     
     Games = EpicGamesBot.list_free_promotional_offers()  # 游戏列表
     print(Games)
     
     with sync_playwright() as playwright:
-        Run(playwright, Email, Password)
+        Run(playwright, Cookies, Email, Password)
