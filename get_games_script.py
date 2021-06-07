@@ -42,7 +42,7 @@ def Run(playwright, cookies, username, password):
             browser.close()
 
         raise
-
+    
 if __name__ == '__main__':
     Cookies = os.environ["EPIC_COOKIES"]
     Email = os.environ["EPIC_EMAIL"]
