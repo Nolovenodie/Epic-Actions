@@ -28,7 +28,7 @@ class EpicGamesBot:
         if cookies:
             logging.info("Logging in with cookies...")
             self.page.context.add_cookies(cookies)
-            self.page.goto(f"{EPIC_GAMES_URL}/login", wait_until="networkidle")
+            self.page.goto(f"{EPIC_GAMES_URL}/login", wait_until="networkidle", timeout=60000)
         elif username and password:
             logging.info("Logging in with account credentials...")
             self.page.context.clear_cookies()
@@ -126,11 +126,11 @@ class EpicGamesBot:
             url = self.page.wait_for_selector(
                 "#webPurchaseContainer > iframe").get_attribute("src")
 
-            self.page.goto(EPIC_GAMES_URL + url)
+            self.page.goto(EPIC_GAMES_URL + url, timeout=60000)
             
             self.page.click(".btn-primary")
             
-            self.page.wait_for_load_state("networkidle")
+            self.page.wait_for_load_state("networkidle", timeout=60000)
             
             purchased_offer_urls.append(offer_url)
 
