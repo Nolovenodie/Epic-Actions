@@ -133,6 +133,8 @@ class EpicGamesBot:
             
             print(url)
             
+            self.page.wait_for_selector(".btn-primary")
+            
             self.page.screenshot(path="debug/screenshot-1.png")
             
             self.page.click(".btn-primary")
