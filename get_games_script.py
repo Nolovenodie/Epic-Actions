@@ -1,5 +1,6 @@
 import os
 import requests
+import json
 
 from epic_games_bot import EpicGamesBot
 from playwright.sync_api import sync_playwright
@@ -44,7 +45,7 @@ def Run(playwright, cookies, username, password):
         raise
     
 if __name__ == '__main__':
-    Cookies = os.environ["EPIC_COOKIES"]
+    Cookies = json.loads(os.environ["EPIC_COOKIES"])
     Email = os.environ["EPIC_EMAIL"]
     Password = os.environ["EPIC_PASSWORD"]
     QmsgToken = os.environ["QMSG_TOKEN"]
